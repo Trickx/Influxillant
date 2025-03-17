@@ -1,0 +1,4 @@
+requests
+influxdb_client
+myPyllant
+configargparse

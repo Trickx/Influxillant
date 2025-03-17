@@ -1,0 +1,16 @@
+services:
+  vaillant2influx:
+    container_name: vaillant2influx
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PUID=1000
+      - PGID=1000
+    env_file:
+      - vaillant2influx.env
+
+networks:
+  smarthome:
+    external: true

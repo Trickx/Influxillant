@@ -1,0 +1,6 @@
+# START CRON JOB
+# every 5 mins for testing
+# */5 * * * * /usr/local/bin/python3.13 /app/vaillant2influx.py > /proc/1/fd/1 2>/proc/1/fd/2
+# Once a day at 1am
+0 1 * * * /usr/local/bin/python3.13 /app/vaillant2influx.py > /proc/1/fd/1 2>/proc/1/fd/2
+# END CRON JOB
