@@ -13,14 +13,6 @@ jobs:
       attestations: write
       id-token: write
     steps:
-      - name: Docker meta
-        id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: l7r7/sample
-          tag-custom: latest
-          tag-semver: |
-            {{raw}}
       
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -37,6 +29,9 @@ jobs:
         with:
           images: |
             tricx/influxillant
+          tag-custom: latest
+          tag-semver: |
+            {{raw}}        
             
       - name: Build and push Docker images
         id: push
@@ -44,7 +39,7 @@ jobs:
         with:
           context: .
           push: true
-          #tags: ${{ steps.meta.outputs.tags }}
-          #labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ steps.docker_meta.outputs.tags }}
-          labels: ${{ steps.docker_meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          #tags: ${{ steps.docker_meta.outputs.tags }}
+          #labels: ${{ steps.docker_meta.outputs.labels }}
