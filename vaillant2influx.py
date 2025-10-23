@@ -180,15 +180,20 @@ async def main(bucket, org, token, url, account, password, devicebrand, year: in
                         #logger.debug(f"Field: {field} ")
                         #logger.debug(f"Value: {value}\n")
 
-                        #Data Points
-                        points.append(influxdb_client.Point(measurement)\
-                            .time(utctime, influxdb_client.WritePrecision.S) \
-                            .tag("home", home)
-                            .tag("device", device)
-                            .tag("serial", serial)
-                            .tag("circuit", circuit)
-                            .field(field, float(value))
-                        )
+                        try:
+                            #Data Points
+                            points.append(influxdb_client.Point(measurement)\
+                                .time(utctime, influxdb_client.WritePrecision.S) \
+                                .tag("home", home)
+                                .tag("device", device)
+                                .tag("serial", serial)
+                                .tag("circuit", circuit)
+                                .field(field, float(value))
+                            )
+                        except ValueError:
+                            print(f"Could not convert value({value}) to float. Skipping this data point.")
+                        except Exception as err:
+                            print(f"Unexpected {err=}, {type(err)=}")
                         #logger.info(f"LineProto: {points[len(points)-1].to_line_protocol()}\n")
 
                     #logger.info(f"LineProto: {points[len(points) - 1].to_line_protocol()}\n")
