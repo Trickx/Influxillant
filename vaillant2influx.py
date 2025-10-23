@@ -191,7 +191,8 @@ async def main(bucket, org, token, url, account, password, devicebrand, year: in
                                 .field(field, float(value))
                             )
                         except ValueError:
-                            print(f"Could not convert value({value}) to float. Skipping this data point.")
+                            print(f"Error in data point creation. Could not convert value to float. Skipping this data point.")
+                            print(f"Affected Data Point: Time: {utctime}), Home: {home}, Device: {device}, Circuit: {circuit}, Value: {value}")
                         except Exception as err:
                             print(f"Unexpected {err=}, {type(err)=}")
                         #logger.info(f"LineProto: {points[len(points)-1].to_line_protocol()}\n")
