@@ -4,3 +4,5 @@
 # Once a day at 1am
 0 1 * * * /usr/local/bin/python3.13 /app/vaillant2influx.py > /proc/1/fd/1 2>/proc/1/fd/2
 # END CRON JOB
+# Once a day at 2am during the first week of a year
+0 2 * 1 1-7 /app/previousyear.sh 

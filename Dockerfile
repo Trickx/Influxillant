@@ -8,8 +8,10 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 
 #COPY application
 COPY vaillant2influx.py /app/vaillant2influx.py
+COPY previousyear.sh /app/previousyear.sh
 
 # Prepare and run crontab
+RUN chmod +x /app/previousyear.sh
 COPY crontab /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab
 RUN /usr/bin/crontab /etc/cron.d/crontab
