@@ -140,7 +140,7 @@ async def main(bucket, org, token, url, account, password, devicebrand, year: in
                 #Anzahl Tageswerte
                 anfang = lines[0].split(";")
                 ende = lines[len(lines)-1].split(";")
-                logger.info(f"{len(lines)-3} Tageswerte im Bereich {anfang[0].partition(' ')[0]} bis {ende[0].partition(' ')[0]}")
+                logger.info(f"{len(lines)} Tageswerte im Bereich {anfang[0].partition(' ')[0]} bis {ende[0].partition(' ')[0]}")
 
                 #Prepare InfluxDB data points
                 points = []
